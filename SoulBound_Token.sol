@@ -1,11 +1,12 @@
-//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
+//SPDX-License-Identifier: UNLICENSED
 
 contract SchoolDegrees {
     struct DegreeInfo {
         string school;
         string degree;
         string field;
+        string cid;
     }
     mapping(uint256 => DegreeInfo) public degreeInfo;
     string public name;
@@ -23,6 +24,7 @@ contract SchoolDegrees {
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     mapping(address => uint256) public balanceOfSBT;
+    uint amount= 1 ether;
 
     constructor() {
         owner = msg.sender;
@@ -45,18 +47,18 @@ contract SchoolDegrees {
         _;
     }
     
-    function createDegree(uint256 _tokenId, string memory _degree, string memory _school, string memory _year) payable public onlyOwner cost(1 ether) onlyWhenNotPaused {
+    function createDegree(uint256 _tokenId, string memory _degree, string memory _school, string memory _year, string memory _cid) payable public onlyOwner cost(1 ether) onlyWhenNotPaused {
         require(_ownedTokens[msg.sender][_tokenId] == false, "Token ID already exists.");
         _ownedTokens[msg.sender][_tokenId] = true;
-        DegreeInfo memory newDegreeInfo = DegreeInfo({school: _school, degree: _degree, field: _year});
+        DegreeInfo memory newDegreeInfo = DegreeInfo({school: _school, degree: _degree, field: _year, cid:_cid});
         degreeInfo[_tokenId] = newDegreeInfo;
         balanceOfSBT[msg.sender] += 1;
         emit Mint(msg.sender, _tokenId);
     }
 
-    function updateDegreeInfo(uint256 _tokenId, string memory _degree, string memory _school, string memory _year) public onlyOwner onlyWhenNotPaused {
+    function updateDegreeInfo(uint256 _tokenId, string memory _degree, string memory _school, string memory _year, string memory _cid) public onlyOwner onlyWhenNotPaused {
         require(_ownedTokens[msg.sender][_tokenId], "You are not the owner of this token.");
-        DegreeInfo memory newDegreeInfo = DegreeInfo({school: _school, degree: _degree, field: _year});
+        DegreeInfo memory newDegreeInfo = DegreeInfo({school: _school, degree: _degree, field: _year, cid:_cid});
         degreeInfo[_tokenId] = newDegreeInfo;
     }
 
@@ -67,11 +69,15 @@ contract SchoolDegrees {
         _ownedTokens[msg.sender][_tokenId] = false;
         emit Transfer(msg.sender, _to, _tokenId);
         balanceOfSBT[msg.sender] -= 1;
-       balanceOfSBT[msg.sender] += 1;
+        balanceOfSBT[_to] += 1;
     }
 
     function getDegreeInfo(uint256 _tokenId) public view returns (string memory, string memory, string memory) {
         return (degreeInfo[_tokenId].degree, degreeInfo[_tokenId].school, degreeInfo[_tokenId].field);
+    }
+
+    function getDegreeCID(uint256 _tokenId) public view returns (string memory) {
+        return (degreeInfo[_tokenId].cid);
     }
 
     function approve(address _approved, uint256 _tokenId) public onlyOwner onlyWhenNotPaused {
@@ -100,4 +106,5 @@ contract SchoolDegrees {
         emit OwnershipTransferred(owner, newOwner);
         owner = newOwner;
     }
+
 }
