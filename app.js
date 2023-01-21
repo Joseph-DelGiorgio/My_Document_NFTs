@@ -22,7 +22,6 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        //generateABI is not defined, assuming it's supposed to be a function that returns the ABI of the contract
         const abi = await generateABI("./contracts/SoulBound_Token.sol");
         const networkId = await web3.eth.net.getId();
         const contractAddress = abi.networks[networkId].address;
