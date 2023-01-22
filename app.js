@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
+import fetchAbi from './fetchabi.js'
+
+
 
 function App() {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState(null);
-  //const API_KEY = 
+  const fetchAbi = require('./fetchabi.js').fetchAbi;
+
+  const API_KEY = 'https://arb-goerli.g.alchemy.com/v2/wzo69fqo0ZyJ2SV0d14SnLdJh39J7iXj';
 
   useEffect(() => {
     if (window.ethereum) {
@@ -17,10 +22,13 @@ function App() {
     }
   }, []);
 
+  
+
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const abi = await abi("./contracts/SoulBound_Token.sol");
+        const abi = await fetchAbi();
         const networkId = await web3.eth.net.getId();
         const contractAddress = abi.networks[networkId].address;
         const contract = new web3.eth.Contract(abi, contractAddress);  
@@ -33,6 +41,7 @@ function App() {
     }
     fetchData();
   }, []);
+
 
 
   const handleMintSubmit = async (event) => {
