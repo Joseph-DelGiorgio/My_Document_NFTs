@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import fetchAbi from './fetchabi.js'
-
+//const address= (0x5FbDB2315678afecb367f032d93F642f64180aa3);
 
 
 function App() {
@@ -69,3 +69,4 @@ function App() {
 }
 
 export default App; 
+
