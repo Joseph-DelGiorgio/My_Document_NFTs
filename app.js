@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import fetchAbi from './fetchabi.js'
+//import PageButton from './../components/PageButton'
+//import ConnectButton from "./ConnectButton";
+//import fetchAbi from '/Users/josephdelgiorgio/SoulBound_Token_Degree/my-app/src/fetchabi.js'
 //const address= (0x5FbDB2315678afecb367f032d93F642f64180aa3);
 
 
-function App() {
+function App(){
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState(null);
   const fetchAbi = require('./fetchabi.js').fetchAbi;
 
-  const API_KEY = 'https://arb-goerli.g.alchemy.com/v2/wzo69fqo0ZyJ2SV0d14SnLdJh39J7iXj';
+  //const API_KEY = 'https://arb-goerli.g.alchemy.com/v2/wzo69fqo0ZyJ2SV0d14SnLdJh39J7iXj';
 
   useEffect(() => {
     if (window.ethereum) {
@@ -21,9 +24,6 @@ function App() {
       setWeb3(new Web3(window.web3.currentProvider));
     }
   }, []);
-
-  
-
 
   useEffect(() => {
     async function fetchData() {
@@ -42,8 +42,11 @@ function App() {
     fetchData();
   }, []);
 
+  const ConnectButton = props => {
+    const { isConnected, signerAddress, getSigner, provider } = props
+    const displayAddress = `${signerAddress?.substring(0,10)}...`
 
-
+  }
   const handleMintSubmit = async (event) => {
     event.preventDefault();
     if(contract === null) {
@@ -68,5 +71,5 @@ function App() {
   )
 }
 
-export default App; 
 
+export default App;
