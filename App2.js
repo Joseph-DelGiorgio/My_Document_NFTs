@@ -1,22 +1,41 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
-import { ConnectWallet } from "@thirdweb-dev/react";
-import fetchAbi from '/Users/josephdelgiorgio/SoulBound_Token_Degree/my-app/src/fetchabi.js'
+//import { web3 } from 'react-web3';
+import 'react-web3';
+const ethers = require('ethers');
+const abi = require("/Users/josephdelgiorgio/SoulBound_Token_Degree/my-app/src/build/contracts_SoulBound_Token_sol_SchoolDegrees.abi");
+const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+const account= ("d56d353de0efdd7c26ae0e677d9e52ffaf10fd0ae68b5a2f689eb8897c4927c6");
+const contract = new Web3.eth.Contract(abi, contractAddress);
 
-function App() {
+
+
+async function App(){
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState(null);
-  const [walletAddress, setWalletAddress] = useState("")
+
+
+  async function fetchAbi() {
+    const provider = new ethers.providers.JsonRpcProvider();
+    const contract = new ethers.Contract(contractAddress, abi, provider);
+    return contract.interface;
+  }
 
   useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.enable().then(() => {
-        setWeb3(new Web3(window.ethereum));
-      });
-    } else if (window.web3) {
-      setWeb3(new Web3(window.web3.currentProvider));
+    async function initializeWeb3() {
+      if (window.ethereum) {
+        const web3Provider = window.ethereum;
+        setWeb3(new Web3(web3Provider));
+        await window.ethereum.enable();
+      } else if (window.web3) {
+        const web3Provider = window.Web3.currentProvider;
+        setWeb3(new Web3(web3Provider));
+      } else {
+        console.error("Non-Ethereum browser detected. You should consider trying Mist or MetaMask!");
+      }
     }
+    initializeWeb3();
   }, []);
 
   useEffect(() => {
@@ -25,7 +44,7 @@ function App() {
         const abi = await fetchAbi();
         const networkId = await web3.eth.net.getId();
         const contractAddress = abi.networks[networkId].address;
-        const contract = new web3.eth.Contract(abi, contractAddress);  
+        const contract = new web3.eth.Contract(abi, contractAddress);
         setContract(contract);
         const accounts = await web3.eth.getAccounts();
         setAccount(accounts[0]);
@@ -33,57 +52,39 @@ function App() {
         console.error(error);
       }
     }
+    if(web3) {
     fetchData();
-  }, []);
-
-  const connectWallet = async () => {
-    // Check if MetaMask is installed on user's browser
-    if(window.ethereum) {
-      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-      const chainId = await window.ethereum.request({ method: 'eth_chainId'});
-    // Check if user is connected to Mainnet
-    //0x5 = Goerli Testnet
-    //0x1 = Eth mainnet
-    if(chainId != '0x5') {
-      alert("Please connect to Goerli testnet");
-    } else {
-      let wallet = accounts[0];
-      setWalletAddress(wallet);
     }
-    } else {
-      alert("Please install Meta-Mask");
-    }
-  }
+  }, [web3]);
 
-    const handleMintSubmit = async (event) => {
+
+
+  const handleMintSubmit = async (event) => {
     event.preventDefault();
     if(contract === null) {
-      console.log("contract is not loaded yet, minting cannot be done.");
-    return;
+        console.log("contract is not loaded yet, minting cannot be done.");
+        return;
+    }
+    const account= ("d56d353de0efdd7c26ae0e677d9e52ffaf10fd0ae68b5a2f689eb8897c4927c6");
+    
+    const contract = new Web3.eth.Contract(abi, contractAddress);
+    const form = event.target;
+    const degree = form.elements["degree"].value;
+    const school = form.elements["school"].value;
+    const year = form.elements["year"].value;
+    await contract.methods.mint(degree, school, year).send({ from: account });
   }
-  const form = event.target;
-  const degree = form.elements["degree"].value;
-  const school = form.elements["school"].value;
-  const year = form.elements["year"].value;
-  await contract.methods.mint(degree, school, year).send({ from: account });
-  }
+
 
   return (
     <form onSubmit={handleMintSubmit}>
-    <input name="degree" placeholder="Degree Name" required/>
-    <input name="school" placeholder="School Name" required/>
-    <input name="year" placeholder="Year" required/>
-    <button type="submit">Mint</button>
-  <ConnectWallet
-    isConnected={() => !!walletAddress}
-    signerAddress={walletAddress}
-    getSigner={connectWallet}
-    provider={web3}
-    accentColor="#f213a4"
-    colorMode="dark"
-  />
-</form>
-);
+      <input name="degree" placeholder="Degree" />
+      <input name="school" placeholder="School" />
+      <input name="year" placeholder="Year" />
+      <button type="submit">Mint</button>
+    </form>
+  )
 }
+
 
 export default App;
