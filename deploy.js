@@ -1,6 +1,6 @@
 const { ContractFactory } = require("ethers");
 const { ethers } = require("hardhat");
-const SchoolDegreesArtifact = require("/SoulBound_Token_Degree/artifacts/contracts/SchoolDegrees.sol/SchoolDegrees.json");
+const SchoolDegreesArtifact = require("/Users/josephdelgiorgio/SoulBound_Token_Degree/artifacts/contracts/SoulBound_Token.sol/SchoolDegrees.json");
 
 async function main() {
   const accounts = await ethers.getSigners();
