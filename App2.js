@@ -5,7 +5,7 @@ import 'react-web3';
 const ethers = require('ethers');
 const abi = require("/Users/josephdelgiorgio/SoulBound_Token_Degree/my-app/src/build/contracts_SoulBound_Token_sol_SchoolDegrees.abi");
 const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
-const account= ("d56d353de0efdd7c26ae0e677d9e52ffaf10fd0ae68b5a2f689eb8897c4927c6");
+const account= ("privatekey");
 const contract = new Web3.eth.Contract(abi, contractAddress);
 
 
