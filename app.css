@@ -13,10 +13,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     font-family: Arial, Helvetica, sans-serif;
     }
     
-    /* set background color */
+    /* set background color and add a rainbow gradient */
     body {
-        background: url("./images/bg-1.png") no-repeat;
-        background-color: #070709;
+        background: linear-gradient(to right, #ff0000, #ffa500, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); 
         color: white;
     }
     
@@ -26,29 +25,29 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     }
    
 
-    /* set background color for main container */
+    /* set background color for main container and add a unicorn pattern */
     .main-container {
-    background-color: #ffffff;
+    background: url("/Users/josephdelgiorgio/SBT/my-app/src/images/unicorn.jpeg") repeat;
     padding: 2em;
     box-shadow: 0px 0px 5px #ccc;
     }
 
-    /* set background color and font color for panel heading */
+    /* set background color and font color for panel heading and add a rainbow gradient */
     .panel-heading {
-    background-image: linear-gradient(to left, #38052F, #070709);
+    background-image: linear-gradient(to left, #ff0000, #ffa500, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
     color: #fff;    
     }
 
-    /* set background color for buttons */
+    /* set background color and add a rainbow gradient for buttons */
     .btn {
-    background-color: #E10859;
+    background: linear-gradient(to right, #ff0000, #ffa500, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
     color: #fff;
     }
 
-    /* set hover background color for buttons */
+    /* set hover background color for buttons and add a unicorn pattern */
 .btn:hover {
-background-color: #ccc;
-color: #333;
+background: url("/Users/josephdelgiorgio/SBT/my-app/src/images/unicorn.jpeg") repeat;
+color: rgb(5, 4, 0);
 }
 
 /* set margin for form inputs */
@@ -63,371 +62,53 @@ display: block;
 }
 
 /* set font color for error messages */
-.error {
-color: red;
+
+error {
+color: #ff0000;
 }
 
-/* set font color for success messages */
-.success {
-color: green;
+/* set border radius for form inputs */
+input[type="text"], input[type="password"], input[type="email"] {
+border-radius: 5px;
 }
 
-/* set max width for main content container */
-.main-content-container {
-max-width: 1000px;
+/* set padding for form submit button */
+input[type="submit"] {
+padding: 0.5em 1em;
+}
+
+/* center align the main container */
+.main-container {
 margin: 0 auto;
+max-width: 800px;
 }
 
-/* set font color for NFT details */
-.nft-details {
-color: #333;
+/* set width and height for images */
+img {
+width: 100%;
+height: auto;
 }
 
-/* set hover background color for NFT images */
-.nft-image:hover {
-background-color: #f5f5f5;
+/* set font size for paragraph */
+p {
+font-size: 1.2em;
+line-height: 1.5em;
 }
 
-/* set font color for "SoulBound" text */
-.soul-bound {
-color: #E10859;
+/* set hover color for links */
+a:hover {
+color: #ffa500;
 }
 
-/* set font color for "immutable" text */
-.immutable {
-color: #333;
-}
-
-/* set font color for "Minted by" text */
-.minted-by {
-color: #333;
-}
-
-/* set background color for "Minted by" container */
-.minted-by-container {
-background-color: #f5f5f5;
+/* set media query for smaller screens */
+@media only screen and (max-width: 600px) {
+.main-container {
 padding: 1em;
 }
-
-/* set background color and font color for "Minted by" title */
-.minted-by-title {
-background-color: #E10859;
-color: #fff;
-padding: 0.5em;
-text-align: center;
+h1, h2, h3 {
+font-size: 1.5em;
 }
-
-/* set background color for "Minted by" user name */
-.minted-by-user {
-background-color: #333;
-color: #fff;
-padding: 0.5em;
-text-align: center;
+p {
+font-size: 1em;
 }
-
-/* set background color for "Minted by" date */
-.minted-by-date {
-background-color: #E10859;
-color: #fff;
-padding: 0.5em;
-text-align: center;
 }
-
-/* set background color for "Minted by" logo */
-.minted-by-logo {
-background-image: url("/Users/josephdelgiorgio/SoulBound_Token_Degree/my-app/src/images/logo-1.png");
-background-repeat: no-repeat;
-background-size: contain;
-width: 50px;
-height: 50px;
-margin: 0 auto;
-}
-
-/* set background color for "SoulBound NFT" text */
-.soul-bound-nft {
-background-color: #E10859;
-color: #fff;
-padding: 0.5em;
-text-align: center;
-}
-
-/* set background color for "immutable" icon */
-.immutable-icon {
-background-image: url("/Users/josephdelgiorgio/SoulBound_Token_Degree/my-app/src/images/icon-1.png");
-background-repeat: no-repeat;
-background-size: contain;
-width: 50px;
-height: 50px;
-margin: 0 auto;
-}
-
-/* set background color for "Mint" button */
-.mint-button {
-background-color: #333;
-color: #fff;
-padding: 1em;
-text-align: center;
-}
-
-/* set background color for "Mint" button hover */
-.mint-button:hover {
-background-color: #E10859;
-}
-
-/* set background color for "Verify" button */
-.verify-button {
-background-color: #E10859;
-color: #fff;
-padding: 1em;
-text-align: center;
-}
-
-/* set background color for "Verify" button hover */
-.verify-button:hover {
-background-color: #333;
-}
-
-/* set background color for "Transfer" button */
-.transfer-button {
-background-color: #333;
-color: #fff;
-padding: 1em;
-text-align: center;
-}
-
-/* set background color for "Transfer" button hover */
-.transfer-button:hover {
-background-color: #E10859;
-}
-
-/* set background color for "Burn" button */
-.burn-button {
-background-color: #E10859;
-color: #fff;
-padding: 1em;
-text-align: center;
-}
-
-/* set background color for "Burn" button hover */
-.burn-button:hover {
-background-color: #333;
-}
-/* set background color for "Minted by" container */
-.minted-by-container {
-background-color: #f5f5f5;
-padding: 1em;
-}
-
-/* set background color and font color for "Minted by" title */
-.minted-by-title {
-background-color: #E10859;
-color: #fff;
-padding: 0.5em;
-text-align: center;
-}
-
-/* set background color for "Minted by" user name */
-.minted-by-user {
-background-color: #333;
-color: #fff;
-padding: 0.5em;
-text-align: center;
-}
-
-/* set background color for "Minted by" date */
-.minted-by-date {
-background-color: #E10859;
-color: #fff;
-padding: 0.5em;
-text-align: center;
-}
-
-/* set background color for "Minted by" logo */
-.minted-by-logo {
-background-image: url("./images/logo-1.png");
-background-repeat: no-repeat;
-background-size: contain;
-width: 50px;
-height: 50px;
-margin: 0 auto;
-}
-
-/* set background color for "SoulBound NFT" text */
-.soul-bound-nft {
-background-color: #E10859;
-color: #fff;
-padding: 0.5em;
-text-align: center;
-}
-
-/* set background color for "immutable" icon */
-.immutable-icon {
-background-image: url("./images/icon-1.png");
-background-repeat: no-repeat;
-background-size: contain;
-width: 50px;
-height: 50px;
-margin: 0 auto;
-}
-
-/* set background color for "Mint" button */
-.mint-button {
-background-color: #333;
-color: #fff;
-padding: 1em;
-text-align: center;
-}
-
-/* set background color for "Mint" button hover */
-.mint-button:hover {
-background-color: #E10859;
-}
-
-/* set background color for "Verify" button */
-.verify-button {
-background-color: #E10859;
-color: #fff;
-padding: 1em;
-text-align: center;
-}
-
-/* set background color for "Verify" button hover */
-.verify-button:hover {
-background-color: #333;
-}
-
-/* set background color for "Transfer" button */
-.transfer-button {
-background-color: #333;
-color: #fff;
-padding: 1em;
-text-align: center;
-}
-
-/* set background color for "Transfer" button hover */
-.transfer-button:hover {
-background-color: #E10859;
-}
-
-/* set background color for "Burn" button */
-.burn-button {
-background-color: #E10859;
-color: #fff;
-padding: 1em;
-text-align: center;
-}
-
-/* set background color for "Burn" button hover */
-.burn-button:hover {
-background-color: #333;
-}
-/* set background color for "Minted by" container */
-.minted-by-container {
-background-color: #f5f5f5;
-padding: 1em;
-}
-    
-/* set background color and font color for "Minted by" title */
-.minted-by-title {
-background-color: #E10859;
-color: #fff;
-padding: 0.5em;
-text-align: center;
-}
-    
-/* set background color for "Minted by" user name */
-.minted-by-user {
-    background-color: #333;
-    color: #fff;
-    padding: 0.5em;
-    text-align: center;
-    }
-    
-    /* set background color for "Minted by" date */
-    .minted-by-date {
-    background-color: #E10859;
-    color: #fff;
-    padding: 0.5em;
-    text-align: center;
-    }
-    
-    /* set background color for "Minted by" logo */
-    .minted-by-logo {
-    background-image: url("./images/logo-1.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-    }
-    
-    /* set background color for "SoulBound NFT" text */
-    .soul-bound-nft {
-    background-color: #E10859;
-    color: #fff;
-    padding: 0.5em;
-    text-align: center;
-    }
-    
-    /* set background color for "immutable" icon */
-    .immutable-icon {
-    background-image: url("./images/icon-1.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-    }
-    
-    /* set background color for "Mint" button */
-    .mint-button {
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
-    text-align: center;
-    }
-    
-    /* set background color for "Mint" button hover */
-    .mint-button:hover {
-    background-color: #E10859;
-    }
-    
-    /* set background color for "Verify" button */
-    .verify-button {
-    background-color: #E10859;
-    color: #fff;
-    padding: 1em;
-    text-align: center;
-    }
-    
-    /* set background color for "Verify" button hover */
-    .verify-button:hover {
-    background-color: #333;
-    }
-    
-    /* set background color for "Transfer" button */
-    .transfer-button {
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
-    text-align: center;
-    }
-    
-    /* set background color for "Transfer" button hover */
-    .transfer-button:hover {
-    background-color: #E10859;
-    }
-    
-    /* set background color for "Burn" button */
-    .burn-button {
-    background-color: #E10859;
-    color: #fff;
-    padding: 1em;
-    text-align: center;
-    }
-    
-    /* set background color for "Burn" button hover */
-    .burn-button:hover {
-    background-color: #333;
-    }
-
