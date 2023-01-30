@@ -1,22 +1,20 @@
-const { ContractFactory } = require("ethers");
-const { ethers } = require("hardhat");
-const SchoolDegreesArtifact = require("/Users/josephdelgiorgio/SoulBound_Token_Degree/artifacts/contracts/SoulBound_Token.sol/SchoolDegrees.json");
+const hre = require("hardhat");
+require('dotenv').config();
+
 
 async function main() {
-  const accounts = await ethers.getSigners();
-  const from = accounts[0];
+  const myDegree = await hre.ethers.getContractFactory("MyDegree");
+  const myDegreeNFT = await myDegree.deploy();
+  await myDegreeNFT.deployed();
 
-  console.log("Deploying contract...");
-  const contractFactory = new ContractFactory(SchoolDegreesArtifact.abi, SchoolDegreesArtifact.bytecode, from);
-  const contract = await contractFactory.deploy();
-
-  console.log("Contract deployed at:", contract.address);
+  console.log(
+    `Your Soul Bound Degree NFT is deployed to ${myDegreeNFT.address}`
+  );
 }
 
-
-main()
-.then(() => process.exit(0))
-.catch((error) => {
-console.error(error);
-process.exit(1);
+// We recommend this pattern to be able to use async/await everywhere
+// and properly handle errors.
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
 });
