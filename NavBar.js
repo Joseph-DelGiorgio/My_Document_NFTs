@@ -1,5 +1,5 @@
 import React from "react";
-
+import '/Users/josephdelgiorgio/SBTD/my-app/src/web3.js'
 const NavBar= ({ accounts, setAccounts}) => {
     const isConnected = Boolean(accounts[0]);
 
@@ -16,20 +16,19 @@ const NavBar= ({ accounts, setAccounts}) => {
             {/*Left Side- Social Media Contact */}
             <div>Github</div>
             <div>Twitter</div>
-            <div>Farcaster</div>
 
 
             {/* Right Side- Sections and Connect */}
-            <div>About</div>
-            <div>Mint</div>
-            <div>Team</div>
+            <div></div>
 
             {/* Connect */}
             {isConnected ?(
-                <p>Connected</p>
+                <p>Wallet Connected</p>
             ) : (
-               <button onClick={connectAccount}>Connect</button> 
+            <button onClick={connectAccount}>Connect</button> 
             )}
         </div>
     );
 };
+
+export default NavBar;
