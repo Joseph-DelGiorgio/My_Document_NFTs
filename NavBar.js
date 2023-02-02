@@ -14,8 +14,16 @@ const NavBar= ({ accounts, setAccounts}) => {
     return(
         <div>
             {/*Left Side- Social Media Contact */}
-            <div>Github</div>
-            <div>Twitter</div>
+            <div>
+                <a href="https://github.com/Joseph-DelGiorgio" target="_blank">
+                Github
+                </a>
+            </div>
+            <div>
+                <a href="https://twitter.com/JoeDelGiorgio1" target="_blank">
+                Twitter
+                </a>
+            </div>
 
 
             {/* Right Side- Sections and Connect */}
